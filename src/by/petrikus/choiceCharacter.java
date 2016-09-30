@@ -13,7 +13,7 @@ import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 
-public class choiceCharacter extends JFrame {
+public class choiceCharacter extends JFrame{
 	BufferedImage or;
 	boolean[] sides = new boolean[4];
 	public choiceCharacter(){
@@ -48,7 +48,7 @@ public class choiceCharacter extends JFrame {
 		btnNewButton.setBounds(10, 45, 74, 72);
 		btnNewButton.setBackground(Color.green);
 		panel.add(btnNewButton);
-		
+
 		JButton button = new JButton("");
 		button.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {

@@ -39,8 +39,9 @@ public class GameWindow extends JFrame {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		getContentPane().setLayout(null);
 		setLocationRelativeTo(null);
-		
-		 menuBar  = new JMenuBar();
+
+
+		menuBar  = new JMenuBar();
 		menuBar.setBounds(0, 0, 634, 21);
 		getContentPane().add(menuBar);
 		
@@ -49,63 +50,76 @@ public class GameWindow extends JFrame {
 		
 		JMenu mnOption = new JMenu("Option");
 		menuBar.add(mnOption);
-		
-		panel = new JPanel();
-		panel.setBackground(Color.BLACK);
-		panel.setBounds(0, 21, 634, 431);
-		getContentPane().add(panel);
-		panel.setLayout(null);
-		
-		JButton btnNewButton = new JButton("START");
+
+
+		JLabel tuman = new JLabel(new ImageIcon("Res/GIF.gif"));
+		tuman.setOpaque(false);
+		tuman.setBounds(0,0,640,480);
+		getContentPane().add(tuman);
+
+		JLabel background = new JLabel(new ImageIcon("Res/main.png"));
+		background.setOpaque(false);
+		background.setBounds(0, 0, 634, 431);
+		tuman.add(background);
+
+		JButton btnNewButton = new JButton();
+		btnNewButton.setOpaque(true);
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				setVisible(false);
 				choiceCharacter choice = new choiceCharacter();
+				dispose();
 			}
 		});
-		btnNewButton.setBackground(new Color(255, 255, 255));
-		btnNewButton.setFont(new Font("Trajan Pro", Font.BOLD | Font.ITALIC, 18));
-		btnNewButton.setForeground(new Color(210, 105, 30));
-		btnNewButton.setBounds(229, 172, 167, 52);
-		panel.add(btnNewButton);
+		btnNewButton.setOpaque(false);
+		btnNewButton.setContentAreaFilled(false);
+		btnNewButton.setBorderPainted(false);
+		btnNewButton.setText("START");
+		btnNewButton.setFont(new Font("Trajan Pro", Font.BOLD | Font.ITALIC, 30));
+		btnNewButton.setForeground(new Color(120, 120, 120));
+		btnNewButton.setBounds(120, 261, 180, 52);
+		tuman.add(btnNewButton);
 		
 		JButton btnNewButton_1 = new JButton("LOAD GAME");
 		btnNewButton_1.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
-		btnNewButton_1.setFont(new Font("Trajan Pro", Font.BOLD | Font.ITALIC, 18));
-		btnNewButton_1.setForeground(new Color(204, 102, 0));
-		btnNewButton_1.setBounds(229, 261, 167, 52);
-		panel.add(btnNewButton_1);
+		btnNewButton_1.setOpaque(false);
+		btnNewButton_1.setContentAreaFilled(false);
+		btnNewButton_1.setBorderPainted(false);
+		btnNewButton_1.setFont(new Font("Trajan Pro", Font.BOLD | Font.ITALIC, 30));
+		btnNewButton_1.setForeground(new Color(120, 120, 120));
+		btnNewButton_1.setBounds(340, 261, 240, 52);
+		tuman.add(btnNewButton_1);
 		
-		lblFire = new JLabel("");
+		/*lblFire = new JLabel("");
 		lblFire.setBackground(new Color(0, 0, 0));
 		lblFire.setIcon(new ImageIcon(image.getSubimage(0, 0, fire.x, fire.y)));
 		lblFire.setBounds(73, 11, 95, 244);
-		panel.add(lblFire);
+		tuman.add(lblFire);
 		
 		lblFire_1 = new JLabel("");
 		lblFire_1.setBackground(new Color(0, 0, 0));
 		lblFire_1.setIcon(new ImageIcon(image.getSubimage(0, 0, fire.x, fire.y)));
 		lblFire_1.setBounds(491, 11, 79, 244);
-		panel.add(lblFire_1);
+		tuman.add(lblFire_1);
 		
 		JLabel label = new JLabel("");
 		label.setIcon(new ImageIcon(tourch.getSubimage(0, 0, 100, 100)));
 		label.setBounds(31, 198, 100, 100);
-		panel.add(label);
-		
+		tuman.add(label);
+
+
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon(tourchElse.getSubimage(0,0, 100,100)));
 		lblNewLabel.setBounds(482, 198, 100, 100);
-		panel.add(lblNewLabel);
+		tuman.add(lblNewLabel);*/
 		setVisible(true);
 		
 		
 	}
 	
-	public void Run(){
+	/*public void Run(){
 		fire.run();
 		lblFire.setIcon(new ImageIcon(image.getSubimage(fire.z,0,fire.x,fire.y)));
 		lblFire_1.setIcon(new ImageIcon(image.getSubimage(fire.z, 0, fire.x, fire.y)));
@@ -115,7 +129,7 @@ public class GameWindow extends JFrame {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
-	}
+	}*/
 	}
 	
 
