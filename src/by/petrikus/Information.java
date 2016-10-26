@@ -12,7 +12,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 
 public class Information extends JDialog{
-	int damageLevel = 0;
 	HashMap<String, String> map = new HashMap<String, String>();
 	String headString = "", bodyString = "", legsString = "", handLString = "", handRString = "";
 	final char[][] shmot = new char[15][5];
@@ -31,7 +30,7 @@ public class Information extends JDialog{
 			image = ImageIO.read(new File("Res/Carts.png"));
 			ves = ImageIO.read(new File("Res/kol.png"));
 		}catch (Exception e){
-
+		setModal(true);
 		}
 		int i = 0;
 		for(String s : reees.keySet()){
@@ -44,7 +43,6 @@ public class Information extends JDialog{
 
 		panel = new JPanel();
 		tabbedPane.addTab("Equipment", null, panel, null);
-
 		thisButton();
 
 		setSize(640,480);
@@ -473,7 +471,6 @@ public class Information extends JDialog{
 				}
 			}
 		});
-
 		btnNewButton_1.setBounds(59, 327, 89, 23);
 		getContentPane().add(btnNewButton_1);
 
@@ -562,7 +559,7 @@ public class Information extends JDialog{
 		panel.updateUI();
 	}
 
-	public void addhandL(String s){
+	private void addhandL(String s){
 		if(handLString != "") {
 			toChange(handLString);
 			word = handLString;
@@ -579,7 +576,7 @@ public class Information extends JDialog{
 		panel.updateUI();
 	}
 
-	public void addhandR(String s){
+	private void addhandR(String s){
 		if(handRString != "") {
 			toChange(handRString);
 			word = handRString;
@@ -600,7 +597,7 @@ public class Information extends JDialog{
 		return map;
 	}
 
-	public void addButton() {
+	private void addButton() {
 		if (shmot[0][0] == 'r') {
 			one.setText(map.get(String.valueOf(shmot[0])));
 			one.setVisible(true);
@@ -636,7 +633,7 @@ public class Information extends JDialog{
 		setVisible(true);
 	}
 
-	public void addEquip(int j){
+	private void addEquip(int j){
 		if(shmot[j][2] == 'h'){
 			headString = map.get(String.valueOf(shmot[j]));
 		head.setText("Head : " + map.get(String.valueOf(shmot[j])));
@@ -668,7 +665,7 @@ public class Information extends JDialog{
 		}
 	}
 
-	public void toYou(String s){
+	private void toYou(String s){
 		char[] r = s.toCharArray();
 		r[0] = 'n';
 		String a = map.get(s);
@@ -676,7 +673,7 @@ public class Information extends JDialog{
 		map.put(String.valueOf(r), a);
 	}
 
-	public void toChange(String s) {
+	private void toChange(String s) {
 		String k = "";
 		for (String z : map.keySet()) {
 			if (s.equals(map.get(z))) {

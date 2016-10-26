@@ -67,7 +67,7 @@ public class GameWindow extends JFrame {
 		btnNewButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				choiceCharacter choice = new choiceCharacter();
-				dispose();
+				hide();
 			}
 		});
 		btnNewButton.setOpaque(false);

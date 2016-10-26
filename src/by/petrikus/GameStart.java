@@ -32,7 +32,9 @@ public class GameStart extends JFrame{
 		JLabel Magic;
 	Character character = new Character();
 		int[][] dungeon;
-		public GameStart(boolean or, int[][] t){
+	private runBattle battle;
+
+	public GameStart(boolean or, int[][] t){
 			super("Game");
 			this.or = or;
 			dungeon = t;
@@ -203,8 +205,17 @@ public class GameStart extends JFrame{
 					if(e.getKeyCode() == KeyEvent.VK_SPACE){
 						if (open) {
 							if (y <= 205 && y >= 170 && x >= 258 && x <= 300) {
-								character.newShmot();
+								character.newShmot(4);
 								open = false;
+							}
+						}
+						else {
+							if (y <= 205 && y >= 170 && x >= 258 && x <= 300) {
+								character.newMonster();
+								Battle battle = new Battle();
+								runBattle runBattle = new runBattle(battle);
+								runBattle.start();
+
 							}
 						}
 					}
@@ -263,7 +274,6 @@ public class GameStart extends JFrame{
 		}
 
 	public void gener() {
-		open = true;
 		try {
 			if (dungeon[a + 1][b] == 0) {
 				SOUTH = true;

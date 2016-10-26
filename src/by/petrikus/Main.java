@@ -10,7 +10,6 @@ public class Main {
 	}
 	
 	public static void run(){
-
 		GameWindow window = new GameWindow();
 		/*for(;;){
 			window.Run();
