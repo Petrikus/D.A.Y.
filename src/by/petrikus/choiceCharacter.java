@@ -19,7 +19,7 @@ public class choiceCharacter extends JFrame{
 	public choiceCharacter(){
 		super("Choice");
 		try {
-			or = ImageIO.read(new File("res/sss.png"));
+			or = ImageIO.read(new File("src/Res/sss.png"));
 		} catch (IOException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -41,7 +41,7 @@ public class choiceCharacter extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				DungeonGeneretion dungeon = new DungeonGeneretion();
-				dungeon.frame(0,0, 5, 5, false);
+				dungeon.frame(5, 5, false);
 			}
 		});
 		btnNewButton.setIcon(new ImageIcon(or.getSubimage(96, 0, 32, 32)));
@@ -54,7 +54,7 @@ public class choiceCharacter extends JFrame{
 			public void actionPerformed(ActionEvent arg0) {
 				setVisible(false);
 				DungeonGeneretion dungeon = new DungeonGeneretion();
-				dungeon.frame(0,0,5, 5, true);
+				dungeon.frame(5, 5, true);
 			}
 		});
 		button.setIcon(new ImageIcon(or.getSubimage(0, 0, 32, 32)));

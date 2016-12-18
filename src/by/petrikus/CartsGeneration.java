@@ -12,56 +12,117 @@ import javax.imageio.ImageIO;
 import javax.swing.*;
 
 public class CartsGeneration {
-	BufferedImage image;
-	public LinkedList<String> array = new LinkedList<String>();
-	public ArrayList<String> back = new ArrayList<String>();
-	public LinkedList<String> monster = new LinkedList<String>();
+	private LinkedList<EquipmentsBank> array = new LinkedList<EquipmentsBank>();
+	private LinkedList<Stats> monster = new LinkedList<Stats>();
+	private LinkedList<EquipmentsBank> back = new LinkedList<EquipmentsBank>();
+	EquipmentsBank bank = new EquipmentsBank();
 	public CartsGeneration(){
-		try {
-			image = ImageIO.read(new File("Res/Carts.png"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
 		Snar();
-		back.addAll(array);
+		back = array;
 	}
 
 	public void Snar(){
-		//Топор ярости
-		array.add(0,"r5r0s");
-		//Меч чесности
-		array.add(1,"r6r1s");
-		//Броня рыцаря-ежика
-		array.add(2,"r4a2s");
-		//Кольчуга из жопы дракона
-		array.add(3,"r3a3s");
-		//Самоуверенный щит
-		array.add(4, "r4r4s");
-		//Молот тысячи гласов
-		array.add(5, "r7r5s");
-		//Слишком заокругленный меч
-		array.add(6, "r5r6s");
-		//Шлем тысячи чертей
-		array.add(7, "r4h7s");
-		//Сапоги кота
-		array.add(8, "r3l8s");
-		//Кеды убегания от ответстенности
-		array.add(9, "r4l9s");
+		//Аммулет ярости
+		bank.setType("Amulet");
+		bank.setName("Амулет ярости");
+		bank.setEffect("Attack");
+		bank.setWear(false);
+		bank.setValue(2);
+		array.add(0,bank);
+		//Талисман чесности
+		bank = new EquipmentsBank();
+		bank.setType("Talisman");
+		bank.setName("Талисман чесности");
+		bank.setEffect("Evasion");
+		bank.setWear(false);
+		bank.setValue(3);
+		array.add(1,bank);
+		//Кольцо мертвого-рыцаря
+		bank = new EquipmentsBank();
+		bank.setType("Ring");
+		bank.setName("Кольцо мертвого рыцаря");
+		bank.setEffect("Defends");
+		bank.setWear(false);
+		bank.setValue(5);
+		array.add(2,bank);
+		//Кольцо сияющего глаза
+		bank = new EquipmentsBank();
+		bank.setType("Ring");
+		bank.setName("Кольцо сияющего глаза");
+		bank.setEffect("Attack");
+		bank.setWear(false);
+		bank.setValue(6);
+		array.add(3,bank);
+		//Самоуверенный талисман
+		bank = new EquipmentsBank();
+		bank.setType("Talisman");
+		bank.setName("Самоуверенный талисман");
+		bank.setEffect("HP");
+		bank.setWear(false);
+		bank.setValue(3);
+		array.add(4, bank);
+		//Амулет тысячи гласов
+		bank = new EquipmentsBank();
+		bank.setType("Amulet");
+		bank.setName("Амулет тысячи гласов");
+		bank.setEffect("MP");
+		bank.setWear(false);
+		bank.setValue(2);
+		array.add(5, bank);
+		//Слишком заокругленное кольцо
+		bank = new EquipmentsBank();
+		bank.setType("Ring");
+		bank.setName("Слишком заокругленное кольцо");
+		bank.setEffect("HP");
+		bank.setWear(false);
+		bank.setValue(2);
+		array.add(6, bank);
+		//Амулет тысячи чертей
+		bank = new EquipmentsBank();
+		bank.setType("Amulet");
+		bank.setName("Амулет тысячи чертей");
+		bank.setEffect("HP");
+		bank.setWear(false);
+		bank.setValue(3);
+		array.add(7, bank);
+		//Талисман кота
+		bank = new EquipmentsBank();
+		bank.setType("Talisman");
+		bank.setName("Талисман кота");
+		bank.setEffect("Evasion");
+		bank.setWear(false);
+		bank.setValue(4);
+		array.add(8, bank);
+		//Кольцо убегания от ответстенности
+		bank = new EquipmentsBank();
+		bank.setType("Ring");
+		bank.setName("Кольцо убегания от ответстенности");
+		bank.setEffect("Attack");
+		bank.setWear(false);
+		bank.setValue(4);
+		array.add(9, bank);
 		/**/
 		//Монстер: снеговище
-		monster.add(0, "m1325");
+		Stats stats = new Stats();
+		stats.setDamage(1);
+		stats.setDefends(3);
+		stats.setHP(2);
+		stats.setMP(5);
+		monster.add(stats);
 	}
 
-	public char[] viborItem(int row){
-			char[] vib;
-			vib = array.get(row).toCharArray();
-			array.remove(row);
-			return vib;
+	public EquipmentsBank choiceItem(int row){
+		bank = array.get(row);
+		array.remove(row);
+		return bank;
 	}
 
-	public char[] viborMonster(int row){
-		char[] vib = monster.get(0).toCharArray();
-		return vib;
+	public Stats choiceMonster(int row){
+
+		return monster.get(0);
+	}
+
+	public int getSize(){
+		return array.size();
 	}
 }

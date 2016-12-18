@@ -8,7 +8,7 @@ public class DungeonGeneretion {
 	boolean[] sides = new boolean[4];
 	boolean or;
 	int[][] dungeon;
-	public void frame(int a, int b, int x, int y, boolean or){
+	public void frame(int x, int y, boolean or){
 			this.or = or;
 			dungeon = new int[x][y];
 			for (int i = 0; i < x; i++){
@@ -86,48 +86,4 @@ public class DungeonGeneretion {
 			}
 			GameStart gameStart = new GameStart(or, dungeon);
 		}
-
-	/*public void gener(int a, int b, int x, int y, boolean or, int[][] dungeon) {
-		try {
-			if (dungeon[a + 1][b] == 0) {
-				SOUTH = true;
-			} else {
-				SOUTH = false;
-			}
-		} catch (Exception e) {
-			SOUTH = false;
-		}
-		sides[0] = SOUTH;
-		try {
-			if (dungeon[a - 1][b] == 0) {
-				NORTH = true;
-			} else {
-				NORTH = false;
-			}
-		} catch (Exception e) {
-			NORTH = false;
-		}
-		sides[1] = NORTH;
-		try {
-			if (dungeon[a][b + 1] == 0) {
-				EAST = true;
-			} else {
-				EAST = false;
-			}
-		} catch (Exception e) {
-			EAST = false;
-		}
-		sides[2] = EAST;
-		try {
-			if (dungeon[a][b - 1] == 0) {
-				WEST = true;
-			} else {
-				WEST = false;
-			}
-		} catch (Exception e) {
-			WEST = false;
-		}
-		sides[3] = WEST;
-		GameStart game = new GameStart(or, sides, a, b, x, y, dungeon);
-	}*/
 }

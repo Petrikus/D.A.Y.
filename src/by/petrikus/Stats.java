@@ -4,49 +4,47 @@ package by.petrikus;
  * Created by user on 10.10.2016.
  */
 public class Stats {
-    private int HP;
-    private int MP;
-    private int damage ;
-    private int defends;
-    private int agility;
+    private int equiHP = 0;
+    private int equiMP = 0;
+    private int equiDamage = 0;
+    private int equiDefend = 0;
+    private int equiEvasion = 0;
 
     public int getMP() {
-        return MP;
+        return 20 + equiMP;
     }
 
     public void setMP(int MP) {
-        this.MP = MP;
+        equiMP = equiMP + MP*5;
     }
 
     public int getHP() {
-        return HP;
+        return 100+equiHP;
     }
 
     public void setHP(int HP) {
-        this.HP = HP;
+        equiHP = equiHP + HP*10;
     }
 
     public int getDamage() {
-        return damage;
+        return 20+equiDamage;
     }
 
-    public void setDamage(int damage) {
-        this.damage = damage;
-    }
+    public void setDamage(int damage) {equiDamage = equiDamage + damage*5; }
 
     public int getDefends() {
-        return defends;
+        return 5+equiDefend;
     }
 
     public void setDefends(int defends) {
-        this.defends = defends;
+        equiDefend =  equiDefend + defends;
     }
 
-    public int getAgility() {
-        return agility;
+    public int getEvasion() {
+        return 5+equiEvasion;
     }
 
-    public void setAgility(int agility) {
-        this.agility = agility;
+    public void setEvasion(int evasion) {
+        equiEvasion = equiEvasion + evasion;
     }
 }

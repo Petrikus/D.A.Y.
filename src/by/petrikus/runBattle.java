@@ -10,13 +10,13 @@ import javax.swing.*;
  */
 public class runBattle extends Thread {
     Battle battle;
-    boolean es = true;
     public runBattle(Battle battle){
         this.battle = battle;
+        start();
     }
 
     public void run(){
-        while (es) {
+        while (battle.END == false) {
             battle.doStay();
             battle.attackMP();
             battle.doMagic();
@@ -26,7 +26,7 @@ public class runBattle extends Thread {
             battle.enemyAttack();
             battle.enemyMagic();
         }
-           JOptionPane.showMessageDialog(null, "тт");
+           JOptionPane.showMessageDialog(null, battle.END());
     }
 
     public int prize(){

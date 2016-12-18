@@ -3,6 +3,7 @@ package by.petrikus;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.io.CharArrayReader;
 import java.io.File;
 import java.io.IOException;
 
@@ -28,30 +29,31 @@ public class GameStart extends JFrame{
 		JLabel label_1;
 		JLabel label_2;
 		JLabel label_3;
-		boolean EAST, NORTH, WEST, SOUTH, or, open = true;
+		boolean EAST, NORTH, WEST, SOUTH, or, open = true, first = true;
 		JLabel Magic;
-	Character character = new Character();
+	Persona character = new Persona();
 		int[][] dungeon;
 	private runBattle battle;
 
 	public GameStart(boolean or, int[][] t){
 			super("Game");
 			this.or = or;
+			final Stats person = new Stats();
 			dungeon = t;
 			try {
-				image = ImageIO.read(new File("Res/sss.png"));
-				kol = ImageIO.read(new File("Res/url.jpg"));
-				gate = ImageIO.read(new File("Res/Dec.jpg"));
-				box = ImageIO.read(new File("Res/box.png"));
-				up = ImageIO.read(new File("Res/up.jpg"));
-				down = ImageIO.read(new File("Res/bokovaya_stena.psd"));
+				image = ImageIO.read(new File("src/Res/sss.png"));
+				kol = ImageIO.read(new File("src/Res/left.jpg"));
+				gate = ImageIO.read(new File("src/Res/Dec.jpg"));
+				box = ImageIO.read(new File("src/Res/box.png"));
+				up = ImageIO.read(new File("src/Res/up.jpg"));
+				down = ImageIO.read(new File("src/Res/bokovaya_stena.psd"));
 			} catch (IOException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 			lblNewLabel_4 = new JLabel();
 			lblNewLabel_4.setIcon(new ImageIcon(gate.getSubimage(20, 20, 25, 25)));
-			lblNewLabel_4.setBounds(320, 25, 25, 25);
+			lblNewLabel_4.setBounds(320, 0, 25, 25);
 			getContentPane().add(lblNewLabel_4);
 
 			label_1 = new JLabel();
@@ -61,12 +63,12 @@ public class GameStart extends JFrame{
 
 			label_2 = new JLabel();
 			label_2.setIcon(new ImageIcon(gate.getSubimage(20, 20, 25, 25)));
-			label_2.setBounds(588, 210, 25, 25);
+			label_2.setBounds(608, 210, 25, 25);
 			getContentPane().add(label_2);
 
 			label_3 = new JLabel();
 			label_3.setIcon(new ImageIcon(gate.getSubimage(20, 20, 25, 25)));
-			label_3.setBounds(320, 420, 25, 25);
+			label_3.setBounds(320, 425, 25, 25);
 			getContentPane().add(label_3);
 			if (or){
 				k = 0;
@@ -204,20 +206,21 @@ public class GameStart extends JFrame{
 					}
 					if(e.getKeyCode() == KeyEvent.VK_SPACE){
 						if (open) {
-							if (y <= 205 && y >= 170 && x >= 258 && x <= 300) {
+							if (y <= 205 && y >= 170 && x >= 258 && x <= 300 && first) {
 								character.newShmot(4);
 								open = false;
 							}
-						}
-						else {
-							if (y <= 205 && y >= 170 && x >= 258 && x <= 300) {
-								character.newMonster();
-								Battle battle = new Battle();
-								runBattle runBattle = new runBattle(battle);
-								runBattle.start();
-
-							}
-						}
+						}else {
+                            if (y <= 205 && y >= 170 && x >= 258 && x <= 300) {
+                               	newStats(person);
+                                character.newMonster();
+                                Battle battle ;
+                                runBattle runBattle = new runBattle(battle = new Battle(person));
+								if(level == 10){
+									JOptionPane.showMessageDialog(null, "Игра завершена, вы стали героем");
+								}
+                            }
+                        }
 					}
 					}catch(Exception a){
 						
@@ -322,10 +325,6 @@ public class GameStart extends JFrame{
 			WEST = false;
 			label_1.setVisible(false);
 		}
-		/*background = new JLabel();
-		background.setIcon(new ImageIcon("Res/background.jpg"));
-		background.setBounds(0,0,640,480);
-		getContentPane().add(background);*/
 		labelBox = new JLabel("");
 		labelBox.setIcon(new ImageIcon(box.getSubimage(0,0,32,32)));
 		labelBox.setBounds(280, 200, 32, 32);
@@ -344,13 +343,13 @@ public class GameStart extends JFrame{
 		JLabel lblNewLabel_1 = new JLabel("");
 
 		lblNewLabel_1.setIcon(new ImageIcon(kol.getSubimage(0, 0, 25, 455)));
-		lblNewLabel_1.setBounds(0, 44, 25, 408);
+		lblNewLabel_1.setBounds(0, 25, 25, 455);
 		getContentPane().add(lblNewLabel_1);
 
 
 		JLabel lblNewLabel_2 = new JLabel("");
-		lblNewLabel_2.setIcon(new ImageIcon(kol.getSubimage(10, 10, 25, 455)));
-		lblNewLabel_2.setBounds(612, 44, 25, 408);
+		lblNewLabel_2.setIcon(new ImageIcon(kol.getSubimage(0, 0, 25, 455)));
+		lblNewLabel_2.setBounds(612, 25, 25, 408);
 		getContentPane().add(lblNewLabel_2);
 
 
@@ -374,10 +373,31 @@ public class GameStart extends JFrame{
 			}
 		});
 		mnFile.add(menuItem);
-
+		open = true;
 		Magic = new JLabel();
 		Magic.setBounds(70, 50, 600, 100);
 		getContentPane().add(Magic);
+	}
 
+	public void newStats(Stats stats){
+		for(EquipmentsBank s : character.returnMap()){
+			if(s.isWear()){
+				if(s.getEffect() == "Attack"){
+					stats.setDamage(Character.getNumericValue(s.getValue()));
+				}else if(s.getEffect() == "Defends"){
+					stats.setDefends(Character.getNumericValue(s.getValue()));
+
+				}else if(s.getEffect() == "Evasion"){
+					stats.setEvasion(Character.getNumericValue(s.getValue()));
+
+				}else if(s.getEffect() == "HP"){
+					stats.setHP(Character.getNumericValue(s.getValue()));
+
+				}else if(s.getEffect() == "MP"){
+					stats.setMP(Character.getNumericValue(s.getValue()));
+
+				}
+			}
+		}
 	}
 }
